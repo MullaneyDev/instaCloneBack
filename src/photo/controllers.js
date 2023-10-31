@@ -40,4 +40,18 @@ const deletePhoto = async (req, res) => {
   }
 };
 
-module.exports = { addPhoto, deletePhoto };
+const getAllPhotos = async (req, res) => {
+  try {
+    const result = await Photo.findAll();
+
+    if (result.length >= 1) {
+      res.status(201).json({ message: "success", result });
+      return;
+    }
+    res.status(404).json({ message: "failure" });
+  } catch (error) {
+    res.status(500).json({ message: error.message, error });
+  }
+};
+
+module.exports = { addPhoto, deletePhoto, getAllPhotos };
