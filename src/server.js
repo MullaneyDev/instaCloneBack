@@ -26,8 +26,11 @@ app.use("/user", userRouter);
 app.use("/photo", photoRouter);
 
 const syncTables = async () => {
-  await User.sync();
-  await Photo.sync();
+  await User.hasMany(Photo);
+  await Photo.belongsTo(User);
+
+  await User.sync({ alter: true });
+  await Photo.sync({ alter: true });
 };
 
 app.get("/health", (req, res) => {
