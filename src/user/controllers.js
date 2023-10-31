@@ -16,6 +16,22 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   try {
+    if (req.user) {
+      const token = await jwt.sign({ id: req.user.id }, process.env.SECRET_KEY);
+      res.status(201).json({
+        message: "Success!",
+        user: {
+          username: req.user.username,
+          email: req.user.email,
+          token,
+        },
+      });
+      return;
+    }
+    if (req.authCheck) {
+      res.status(200).json({ message: "Success!", user });
+      return;
+    }
   } catch (error) {
     res.status(500).json({ message: error.message, error });
   }
