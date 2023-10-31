@@ -1,8 +1,18 @@
 const User = require("./model");
 const jwt = require("jsonwebtoken");
+const { findMissingRequiredFields } = require("../utils/utils.js");
 
 const registerUser = async (req, res) => {
   try {
+    const requiredFields = ["username", "email", "password"];
+    const missingFields = findMissingRequiredFields(requiredFields, req.body);
+
+    if (missingFields.length >= 1) {
+      res
+        .status(409)
+        .json({ message: `${missingFields} is missing from request` });
+      return;
+    }
     const result = await User.create(req.body);
     res.status(201).json({ message: "success", result });
   } catch (error) {
