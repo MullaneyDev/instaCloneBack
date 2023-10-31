@@ -4,7 +4,7 @@ const saltRounds = parseInt(process.env.SALT_ROUNDS);
 
 const User = require("../user/model");
 
-const hashPass = async (res, req, next) => {
+const hashPass = async (req, res, next) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, saltRounds);
     next();
@@ -13,7 +13,7 @@ const hashPass = async (res, req, next) => {
   }
 };
 
-const comparePass = async (res, req, next) => {
+const comparePass = async (req, res, next) => {
   try {
     if (!req.body.username) {
       res.status(500).json({ message: "Username cannot be blank." });
