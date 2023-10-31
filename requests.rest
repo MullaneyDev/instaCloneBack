@@ -1,0 +1,24 @@
+
+POST  http://localhost:5001/user/register
+content-type: application/json
+
+{
+  "username" : "bob",
+  "email" : "bob@gmail.com",
+  "password" : "password"
+}
+
+###
+
+GET http://localhost:5001/user
+
+###
+
+POST http://localhost:5001/user
+content-type: application/json
+
+{
+    "url": "https://unsplash.com/photos/LF8gK8-HGSg"
+}
+
+###
