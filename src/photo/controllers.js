@@ -8,9 +8,9 @@ const jwt = require("jsonwebtoken");
 
 const addPhoto = async (req, res) => {
   try {
-    const photo = await Photo.create(req.body);
+    const result = await Photo.create(req.body);
 
-    res.status(201).json({ message: "success", photo });
+    res.status(201).json({ message: "success", result });
   } catch (error) {
     if (error.name === "sequelizeUniqueConstraintError") {
       res.stats(412).json({ message: error.message, error });
@@ -24,7 +24,7 @@ const deletePhoto = async (req, res) => {
     if (!req.photo) {
       throw new Error("Photo is undefined");
     }
-    const photo = await Photo.destroy({
+    const result = await Photo.destroy({
       where: {
         id: req.body.id,
       },
@@ -32,7 +32,7 @@ const deletePhoto = async (req, res) => {
 
     const successResponse = {
       message: "success",
-      photo,
+      result,
     };
     res.send(successResponse);
   } catch (error) {

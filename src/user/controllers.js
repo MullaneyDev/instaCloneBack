@@ -3,8 +3,8 @@ const jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
   try {
-    const newUser = await User.create(req.body);
-    res.status(201).json({ message: "success", newUser });
+    const result = await User.create(req.body);
+    res.status(201).json({ message: "success", result });
   } catch (error) {
     if (error.name === "SequelizeUniqueConstraintError") {
       res.status(412).json({ message: error.message, error });
@@ -23,10 +23,10 @@ const loginUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const allUsers = await User.findAll();
+    const result = await User.findAll();
 
-    if (allUsers.length >= 1) {
-      res.status(201).json({ message: "success", allUsers });
+    if (result.length >= 1) {
+      res.status(201).json({ message: "success", result });
       return;
     }
     res.status(404).json({ message: "failure" });

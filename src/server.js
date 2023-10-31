@@ -9,7 +9,7 @@ const userRouter = require("./user/routes");
 const Photo = require("./photo/model");
 const photoRouter = require("./photo/routes");
 
-const port = proccess.env.PORT || 5001;
+const port = process.env.PORT || 5001;
 
 const app = express();
 
