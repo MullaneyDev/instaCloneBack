@@ -1,3 +1,4 @@
+const Photo = require("../photo/model");
 const User = require("./model");
 const jwt = require("jsonwebtoken");
 const { findMissingRequiredFields } = require("../utils/utils.js");
@@ -61,8 +62,23 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+const photosByUser = async (req, res) => {
+  try {
+    const result = await User.findOne({
+      where: {
+        username: req.params.username,
+      },
+      include: Photo,
+    });
+    res.status(201).json({ message: "success", result });
+  } catch (error) {
+    res.status(500).json({ message: error.message, error });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   getAllUsers,
+  photosByUser,
 };
