@@ -18,7 +18,8 @@ POST http://localhost:5001/photo
 content-type: application/json
 
 {
-    "url": "https://unsplash.com/photos/y83Je1OC6Wc"
+    "url": "https://unsplash.com/photos/6J--NXulQCs",
+    "UserId" : 1
 }
 
 ###
