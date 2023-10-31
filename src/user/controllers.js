@@ -21,7 +21,22 @@ const loginUser = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  try {
+    const allUsers = await User.findAll();
+
+    if (allUsers.length >= 1) {
+      res.status(201).json({ message: "success", allUsers });
+      return;
+    }
+    res.status(404).json({ message: "failure" });
+  } catch (error) {
+    res.status(500).json({ message: error.message, error });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
+  getAllUsers,
 };
