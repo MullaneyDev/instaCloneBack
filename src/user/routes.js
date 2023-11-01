@@ -6,6 +6,7 @@ const {
   loginUser,
   getAllUsers,
   photosByUser,
+  updateUsername,
 } = require("./controllers");
 
 const { hashPass, comparePass, tokenCheck } = require("../middleware");
@@ -24,5 +25,8 @@ userRouter.get("/:username", photosByUser);
 
 // token check for persistent login
 userRouter.get("/authCheck", tokenCheck, loginUser);
+
+// update username
+userRouter.put("/login/updateUsername", updateUsername);
 
 module.exports = userRouter;
