@@ -18,13 +18,19 @@ POST http://localhost:5001/photo
 content-type: application/json
 
 {
-    "url": "https://unsplash.com/photos/6J--NXulQCs",
-    "UserId" : 1
+    "url": "https://unsplash.com/photos/_WiFMBRT7Aw",
 }
 
 ###
 GET http://localhost:5001/photo
 
 ###
-GET http://localhost:5001/user/gina
+GET http://localhost:5001/user/dave
 
+###
+PUT http://localhost:5001/user/updatepass
+content-type: application/json
+
+{
+    "password": "updatepass",
+}
