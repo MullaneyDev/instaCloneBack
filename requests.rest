@@ -27,3 +27,10 @@ GET http://localhost:5001/photo
 ###
 GET http://localhost:5001/user/dave
 
+###
+PUT http://localhost:5001/user/updatepass
+content-type: application/json
+
+{
+    "password": "updatepass",
+}
