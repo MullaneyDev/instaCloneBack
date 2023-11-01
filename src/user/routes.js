@@ -8,6 +8,7 @@ const {
   photosByUser,
   updateUsername,
   updatePass,
+  deleteUser,
 } = require("./controllers");
 
 const { hashPass, comparePass, tokenCheck } = require("../middleware");
@@ -31,7 +32,9 @@ userRouter.get("/authCheck", tokenCheck, loginUser);
 userRouter.put("/login/updateUsername", updateUsername);
 
 // update password
-userRouter.put("/updatepass/:username", tokenCheck, updatePass);
+userRouter.put("/login/updatePassword", updatePass);
 
+// delete user
+userRouter.delete("/login/delete", deleteUser);
 
 module.exports = userRouter;
