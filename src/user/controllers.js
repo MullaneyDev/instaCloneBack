@@ -78,11 +78,16 @@ const photosByUser = async (req, res) => {
 
 const updatePass = async (req, res) => {
   try {
-    const result = await User.update({
-      where: {
+    const result = await User.update(
+      {
         password: req.body.password,
       },
-    });
+      {
+        where: {
+          username: req.params.username,
+        },
+      }
+    );
     res.status(201).json({ message: "success", result });
   } catch (error) {
     res.status(500).json({ message: error.message, error });

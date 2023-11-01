@@ -27,6 +27,6 @@ userRouter.get("/:username", photosByUser);
 userRouter.get("/authCheck", tokenCheck, loginUser);
 
 // update password
-userRouter.put("/updatepass", tokenCheck, updatePass);
+userRouter.put("/updatepass/:username", tokenCheck, updatePass);
 
 module.exports = userRouter;
