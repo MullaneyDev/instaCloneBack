@@ -26,6 +26,9 @@ app.use("/user", userRouter);
 app.use("/photo", photoRouter);
 
 const syncTables = async () => {
+  await User.hasMany(Photo);
+  await Photo.belongsTo(User);
+
   await User.sync();
   await Photo.sync();
 };
