@@ -8,7 +8,15 @@ const jwt = require("jsonwebtoken");
 
 const addPhoto = async (req, res) => {
   try {
-    const result = await Photo.create(req.body);
+    if (!req.user) {
+      throw new Error("Photo is undefined");
+    }
+    const UserId = req.user.id;
+    console.log("FROM ADD PHOTO", UserId);
+    const result = await Photo.create({
+      UserId: UserId,
+      url: req.body.url,
+    });
 
     res.status(201).json({ message: "success", result });
   } catch (error) {
