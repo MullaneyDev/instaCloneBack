@@ -76,6 +76,8 @@ const photosByUser = async (req, res) => {
   }
 };
 
+const updateUsername = async (req, res) => {};
+
 module.exports = {
   registerUser,
   loginUser,
