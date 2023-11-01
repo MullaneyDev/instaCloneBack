@@ -29,8 +29,8 @@ const syncTables = async () => {
   await User.hasMany(Photo);
   await Photo.belongsTo(User);
 
-  await User.sync({ alter: true });
-  await Photo.sync({ alter: true });
+  await User.sync();
+  await Photo.sync();
 };
 
 app.get("/health", (req, res) => {

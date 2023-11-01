@@ -21,7 +21,7 @@ const addPhoto = async (req, res) => {
 
 const deletePhoto = async (req, res) => {
   try {
-    if (!req.photo) {
+    if (!req.user) {
       throw new Error("Photo is undefined");
     }
     const result = await Photo.destroy({
