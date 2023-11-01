@@ -84,7 +84,7 @@ const updateUsername = async (req, res) => {
     );
     res.status(201).json({ message: "Success!", result });
   } catch (error) {
-    res.status(500).json({ message: error.mesage, error });
+    res.status(500).json({ message: error.message, error });
   }
 };
 
