@@ -3,8 +3,8 @@ POST  http://localhost:5001/user/register
 content-type: application/json
 
 {
-  "username" : "bob",
-  "email" : "bob@gmail.com",
+  "username" : "gina",
+  "email" : "gina@gmail.com",
   "password" : "password"
 }
 
@@ -14,11 +14,16 @@ GET http://localhost:5001/user
 
 ###
 
-POST http://localhost:5001/user
+POST http://localhost:5001/photo
 content-type: application/json
 
 {
-    "url": "https://unsplash.com/photos/LF8gK8-HGSg"
+    "url": "https://unsplash.com/photos/_WiFMBRT7Aw",
 }
 
 ###
+GET http://localhost:5001/photo
+
+###
+GET http://localhost:5001/user/dave
+

@@ -8,7 +8,15 @@ const jwt = require("jsonwebtoken");
 
 const addPhoto = async (req, res) => {
   try {
-    const result = await Photo.create(req.body);
+    if (!req.user) {
+      throw new Error("Photo is undefined");
+    }
+    const UserId = req.user.id;
+    console.log("FROM ADD PHOTO", UserId);
+    const result = await Photo.create({
+      UserId: UserId,
+      url: req.body.url,
+    });
 
     res.status(201).json({ message: "success", result });
   } catch (error) {
@@ -21,7 +29,7 @@ const addPhoto = async (req, res) => {
 
 const deletePhoto = async (req, res) => {
   try {
-    if (!req.photo) {
+    if (!req.user) {
       throw new Error("Photo is undefined");
     }
     const result = await Photo.destroy({
@@ -40,4 +48,18 @@ const deletePhoto = async (req, res) => {
   }
 };
 
-module.exports = { addPhoto, deletePhoto };
+const getAllPhotos = async (req, res) => {
+  try {
+    const result = await Photo.findAll();
+
+    if (result.length >= 1) {
+      res.status(201).json({ message: "success", result });
+      return;
+    }
+    res.status(404).json({ message: "failure" });
+  } catch (error) {
+    res.status(500).json({ message: error.message, error });
+  }
+};
+
+module.exports = { addPhoto, deletePhoto, getAllPhotos };
