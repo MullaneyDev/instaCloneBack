@@ -26,7 +26,7 @@ userRouter.get("/:username", photosByUser);
 // token check for persistent login
 userRouter.get("/authCheck", tokenCheck, loginUser);
 
-// update username with token check
-userRouter.put("/login/updateUsername", tokenCheck, updateUsername);
+// update username
+userRouter.put("/login/updateUsername", updateUsername);
 
 module.exports = userRouter;
