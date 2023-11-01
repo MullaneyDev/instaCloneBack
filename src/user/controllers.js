@@ -76,7 +76,6 @@ const photosByUser = async (req, res) => {
   }
 };
 
-
 const updateUsername = async (req, res) => {
   try {
     const result = await User.update(
@@ -86,26 +85,35 @@ const updateUsername = async (req, res) => {
     res.status(201).json({ message: "Success!", result });
   } catch (error) {
     res.status(500).json({ message: error.mesage, error });
-  };
+  }
 };
-  
-  
+
 const updatePass = async (req, res) => {
   try {
     const result = await User.update(
       {
-        password: req.body.password,
+        password: req.body.newPassword,
       },
       {
         where: {
-          username: req.params.username,
+          password: req.body.password,
         },
       }
     );
     res.status(201).json({ message: "success", result });
   } catch (error) {
     res.status(500).json({ message: error.message, error });
+  }
+};
 
+const deleteUser = async (req, res) => {
+  try {
+    const result = await User.destroy({
+      where: { username: req.body.username },
+    });
+    res.status(201).json({ message: "Success!", result });
+  } catch (error) {
+    res.status(500).json({ message: error.message, error });
   }
 };
 
@@ -116,5 +124,5 @@ module.exports = {
   photosByUser,
   updateUsername,
   updatePass,
-
+  deleteUser,
 };
