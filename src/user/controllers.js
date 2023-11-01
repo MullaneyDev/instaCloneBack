@@ -76,9 +76,17 @@ const photosByUser = async (req, res) => {
   }
 };
 
+const updatePass = async (req, res) => {
+  try {
+  } catch (error) {
+    res.status(500).json({ message: error.message, error });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   getAllUsers,
   photosByUser,
+  updatePass,
 };
