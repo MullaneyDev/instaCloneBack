@@ -40,11 +40,13 @@ const comparePass = async (req, res, next) => {
 };
 
 const tokenCheck = async (req, res, next) => {
+  console.log("HELLO from token Check", req);
   try {
     const token = req.header("Authorization").replace("Bearer ", "");
     const decodedToken = await jwt.verify(token, process.env.SECRET_KEY);
-    req.user = await User.findOne({ where: { id: decodedToken.id } });
-    if (!req.user) {
+    req.authCheck = await User.findOne({ where: { id: decodedToken.id } });
+    console.log("REQdotAuth", req.authCheck);
+    if (!req.authCheck) {
       const error = new Error("User is not Authorised");
       res.status(401).json({ message: error.message, error: error });
     }

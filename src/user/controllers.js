@@ -26,6 +26,7 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
+  console.log(" HELLO FROM LOGIN USER!!!!!!!!!!!!!!!!!!!!!!!!!");
   try {
     if (req.user) {
       const token = await jwt.sign({ id: req.user.id }, process.env.SECRET_KEY);
@@ -40,7 +41,8 @@ const loginUser = async (req, res) => {
       return;
     }
     if (req.authCheck) {
-      res.status(200).json({ message: "Success!", user });
+      console.log("reqreqreq", req.authCheck);
+      res.status(200).json({ message: "Success!", user: req.authCheck });
       return;
     }
   } catch (error) {
@@ -53,7 +55,7 @@ const getAllUsers = async (req, res) => {
     const result = await User.findAll();
 
     if (result.length >= 1) {
-      res.status(201).json({ message: "success", result });
+      res.status(201).json({ message: "success", result, name: "JIM" });
       return;
     }
     res.status(404).json({ message: "failure" });
