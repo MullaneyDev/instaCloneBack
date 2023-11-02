@@ -21,9 +21,9 @@ const addPhoto = async (req, res) => {
     res.status(201).json({ message: "success", result });
   } catch (error) {
     if (error.name === "sequelizeUniqueConstraintError") {
-      res.stats(412).json({ message: error.message, error });
+      res.stats(412).json({ message: error.message, error: error });
     }
-    res.status(500).json({ message: error.message, error });
+    res.status(500).json({ message: error.message, error: error });
   }
 };
 
@@ -44,7 +44,7 @@ const deletePhoto = async (req, res) => {
     };
     res.send(successResponse);
   } catch (error) {
-    res.status(500).json({ message: error.message, error });
+    res.status(500).json({ message: error.message, error: error });
   }
 };
 
@@ -58,7 +58,7 @@ const getAllPhotos = async (req, res) => {
     }
     res.status(404).json({ message: "failure" });
   } catch (error) {
-    res.status(500).json({ message: error.message, error });
+    res.status(500).json({ message: error.message, error: error });
   }
 };
 
