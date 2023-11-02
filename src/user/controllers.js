@@ -50,7 +50,7 @@ const loginUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const result = await User.findAll();
+    const result = await User.findAll({ include: Photo });
 
     if (result.length >= 1) {
       res.status(201).json({ message: "success", result });
