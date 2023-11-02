@@ -18,10 +18,10 @@ const registerUser = async (req, res) => {
     res.status(201).json({ message: "success", result });
   } catch (error) {
     if (error.name === "SequelizeUniqueConstraintError") {
-      res.status(412).json({ message: error.message, error });
+      res.status(412).json({ message: error.message, error: error });
       return;
     }
-    res.status(500).json({ message: error.message, error });
+    res.status(500).json({ message: error.message, error: error });
   }
 };
 
@@ -44,7 +44,7 @@ const loginUser = async (req, res) => {
       return;
     }
   } catch (error) {
-    res.status(500).json({ message: error.message, error });
+    res.status(500).json({ message: error.message, error: error });
   }
 };
 
@@ -58,7 +58,7 @@ const getAllUsers = async (req, res) => {
     }
     res.status(404).json({ message: "failure" });
   } catch (error) {
-    res.status(500).json({ message: error.message, error });
+    res.status(500).json({ message: error.message, error: error });
   }
 };
 
@@ -72,7 +72,7 @@ const photosByUser = async (req, res) => {
     });
     res.status(201).json({ message: "success", result });
   } catch (error) {
-    res.status(500).json({ message: error.message, error });
+    res.status(500).json({ message: error.message, error: error });
   }
 };
 
@@ -84,7 +84,7 @@ const updateUsername = async (req, res) => {
     );
     res.status(201).json({ message: "Success!", result });
   } catch (error) {
-    res.status(500).json({ message: error.message, error });
+    res.status(500).json({ message: error.message, error: error });
   }
 };
 
@@ -102,7 +102,7 @@ const updatePass = async (req, res) => {
     );
     res.status(201).json({ message: "success", result });
   } catch (error) {
-    res.status(500).json({ message: error.message, error });
+    res.status(500).json({ message: error.message, error: error });
   }
 };
 
@@ -113,7 +113,7 @@ const deleteUser = async (req, res) => {
     });
     res.status(201).json({ message: "Success!", result });
   } catch (error) {
-    res.status(500).json({ message: error.message, error });
+    res.status(500).json({ message: error.message, error: error });
   }
 };
 
