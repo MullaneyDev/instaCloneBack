@@ -33,6 +33,7 @@ const comparePass = async (req, res, next) => {
       res.status(401).json({ message: "Unauthorised Login!" });
       return;
     }
+    req.passwordMatch = passwordMatch;
     next();
   } catch (error) {
     res.status(501).json({ message: error.message, error });
@@ -44,12 +45,13 @@ const tokenCheck = async (req, res, next) => {
     const token = req.header("Authorization").replace("Bearer ", "");
     const decodedToken = await jwt.verify(token, process.env.SECRET_KEY);
     req.user = await User.findOne({ where: { id: decodedToken.id } });
+    console.log("FROM TOKEN CHECK!!!", req.user);
     if (!req.user) {
       const error = new Error("User is not Authorised");
       res.status(401).json({ message: error.message, error: error });
     }
 
-    req.passwordMatch = true;
+    req.authCheck = true;
     next();
   } catch (error) {
     console.log(error);

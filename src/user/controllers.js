@@ -27,7 +27,7 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   try {
-    if (req.user) {
+    if (req.passwordMatch) {
       const token = await jwt.sign({ id: req.user.id }, process.env.SECRET_KEY);
       res.status(201).json({
         message: "Success!",
@@ -40,7 +40,7 @@ const loginUser = async (req, res) => {
       return;
     }
     if (req.authCheck) {
-      res.status(200).json({ message: "Success!", user });
+      res.status(200).json({ message: "Success!", user: req.user });
       return;
     }
   } catch (error) {
