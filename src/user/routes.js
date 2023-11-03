@@ -19,14 +19,14 @@ userRouter.post("/register", hashPass, registerUser);
 // login user, no pass hash or token check
 userRouter.post("/login", comparePass, loginUser);
 
-// get all users, mainly used for testing on backend
-userRouter.get("/", getAllUsers);
-
 // get pictures of username
-userRouter.get("/:username", photosByUser);
+userRouter.get("/getUserPhotos/:username", tokenCheck, photosByUser);
 
 // token check for persistent login
 userRouter.get("/authCheck", tokenCheck, loginUser);
+
+// get all users, mainly used for testing on backend
+userRouter.get("/", getAllUsers);
 
 // update username
 userRouter.put("/login/updateUsername", updateUsername);
