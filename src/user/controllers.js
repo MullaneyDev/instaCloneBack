@@ -90,7 +90,9 @@ const updateUsername = async (req, res) => {
 
 const updatePass = async (req, res) => {
   try {
-    const result = await User.update(
+    const user = await User.findOne({where: {username: req.body.user}})
+    if (user) {
+          const result = await User.update(
       {
         password: req.body.newPassword,
       },
@@ -101,6 +103,8 @@ const updatePass = async (req, res) => {
       }
     );
     res.status(201).json({ message: "success", result });
+    }
+ res.status(500).json({message: "Username not valid"})
   } catch (error) {
     res.status(500).json({ message: error.message, error: error });
   }
