@@ -32,7 +32,7 @@ userRouter.get("/authCheck", tokenCheck, loginUser);
 userRouter.put("/login/updateUsername", updateUsername);
 
 // update password
-userRouter.put("/login/updatePassword", updatePass);
+userRouter.put("/login/updatePassword", hashPass, updatePass);
 
 // delete user
 userRouter.delete("/login/delete", deleteUser);
