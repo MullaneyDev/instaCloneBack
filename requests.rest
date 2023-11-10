@@ -1,0 +1,36 @@
+
+POST  http://localhost:5001/user/register
+content-type: application/json
+
+{
+  "username" : "gina",
+  "email" : "gina@gmail.com",
+  "password" : "password"
+}
+
+###
+
+GET http://localhost:5001/user
+
+###
+
+POST http://localhost:5001/photo
+content-type: application/json
+
+{
+    "url": "https://unsplash.com/photos/_WiFMBRT7Aw",
+}
+
+###
+GET http://localhost:5001/photo
+
+###
+GET http://localhost:5001/user/dave
+
+###
+PUT http://localhost:5001/user/updatepass
+content-type: application/json
+
+{
+    "password": "updatepass",
+}
